@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+// Define color scheme
+
+$purple: rgb(131, 92, 177);
+$pink: rgb(250, 124, 212);
+$brown: #a79b75;
+$beige-light: adjust-color($brown, $lightness: +20%);
+
+// Apply color scheme and general styles
+
+//$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $purple;
+$link: $pink;
+
+$info: adjust-color(#9b93bf, $lightness: -10%);
+
+$body-background-color: #eae7df;
+$control-border-width: 2px;
+
+$box-shadow: none;
+
+// Set font family
+
+@font-face {
+  font-family: 'LatoWebBlack';
+  src: url('fonts/Lato-Black.woff2') format('woff2'),
+       url('fonts/Lato-Black.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+$family-sans-serif: "LatoWebBlack", "Lato", sans-serif;
+
+// Import bulma styles
+
+@import "../node_modules/bulma/sass/utilities/all";
+@import "../node_modules/bulma/sass/base/all";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/box.sass";
+
+// Fix elm debugging
+
+[data-elm-hot="true"] {
+  height: inherit;
+}
+
+// Button grid:
+
+.but-box {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.h-100 {
+  height: 100%
+}
+
+// General Styles
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "LatoWebBlack", "Lato", Arial, Helvetica, sans-serif;
+}
+
+// Keys
+
+.key {
+  @extend .button;
+
+  height: 100%;
+  font-size: 200%;
+}
+
+.key-op {
+  @extend .key;
+  @extend .is-info;
+}
+
+.key-del {
+  @extend .key;
+  @extend .is-danger;
+}
+
+.key-double {
+  @extend .key;
+  grid-column: 1 / 3;
+}
+
+// Result view
+
+.output {
+  @extend .box;
+  grid-column: 1 / 5;
+  margin-bottom: 0 !important;
+  text-align: right;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  display:grid;
+  align-content: center;
+}
+
+.calculation {
+  font-size: 150%;
+}
+
+.result {
+  font-size: 300%;
+}
+
+
+// Multiplication sign doesn't render properly in Firefox
+// so take the Addition sign and rotate it by 45 degrees
+
+.rot {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
